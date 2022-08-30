@@ -1,13 +1,13 @@
 const mainBlock = document.querySelector('.main-block');
 
 document.addEventListener('DOMContentLoaded', () => {
-	getData1('https://rickandmortyapi.com/api/character/1');
-	getData1('https://rickandmortyapi.com/api/character/2');
-	getData1('https://rickandmortyapi.com/api/character/15');
-	getData1('https://rickandmortyapi.com/api/character/14');
+	getData('https://rickandmortyapi.com/api/character/1');
+	getData('https://rickandmortyapi.com/api/character/2');
+	getData('https://rickandmortyapi.com/api/character/15');
+	getData('https://rickandmortyapi.com/api/character/14');
 });
 
-async function getData1(url) {
+async function getData(url) {
 	try {
 		const response = await fetch(url);
 		const bigData = await response.json();
@@ -34,5 +34,8 @@ async function getData1(url) {
 		descr.textContent = `Вид: ${bigData.species}`;
 	} catch (err) {
 		console.log(err);
+		mainBlock.innerHTML = `
+		<div>Упс... Что-то пошло не так... Попробуйте зайти позже</div>
+		`;
 	}
 }
